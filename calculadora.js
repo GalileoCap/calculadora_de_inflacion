@@ -7,30 +7,30 @@ var datos = [19.9, 17.6, 13.6, 13.1, 31, 15.6, 36.7, 38.8, 4, 3.8, 12.3, 13.4, 2
 function iniciarEnBrowser(){
 	var uiBtn = document.getElementById("button");
 	uiBtn.onclick = function(){
-		var valor = document.getElementById("valor");
-		var inicial = document.getElementById("inicial");
-		var final = document.getElementById("final");
+		var precio = document.getElementById("valor").value;
+		var anoIn = document.getElementById("inicial").value;
+		var anoFin = document.getElementById("final").value;
 
-		calculadora(valor, inicial, final);
+		calculadora(precio, anoIn, anoFin);
 	}
 }
 
 //********************************************************
 //S: Calculadora
-function calculo(valor, t){
-	valor += precio * datos[t];
-	return(valor)
+function calculo(precio, t){
+	precio += precio * datos[t];
+	return(precio)
 }
 
-function calculadora(valor, anoIn, anoFin){
+function calculadora(precio, anoIn, anoFin){
 	var desde = anoIn - 1944;
 	var hasta = anoFin - 1945;
 	if(desde < hasta){
 		for(var t = desde; t <= hasta; t++){
-			valor = calculo(valor, t);
+			precio = calculo(precio, t);
 		}
 	} else {
-		alert("Fijate qe las fechas estén en el orden correcto (el año inicial es menor qe el año final)");
+		alert("Fijate qe las fechas estén en el orden correcto (el año inicial es menor o igual qe el año final)");
 	}
-	alert(valor);
+	console.log(precio);
 }
