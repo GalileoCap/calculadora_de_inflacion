@@ -1,9 +1,18 @@
 <html>
 	<title>Calc Inflacion</title>
 	<body>
-		<select name="anoIn">
-			<option value="1945">1945</option>
-			<option value="1946">1946</option>
-		</select>
+		<from action="/calculadora_de_inflacion">
+			Año inicial : <select name="anoIn">
+				<option value="1945">1993</option>
+				<option value="1946">1994</option>
+			</select>
+			<br><br>
+			Año final : <select name="anoFin">
+				<option value="2016">2016</option>
+				<option value="2017">2017</option>
+			</select>
+			<br><br>
+			<input type="submit">
+		</from>
 	</body>
 </html>

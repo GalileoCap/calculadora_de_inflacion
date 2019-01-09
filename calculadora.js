@@ -3,9 +3,16 @@
 var datos = [19.9, 17.6, 13.6, 13.1, 31, 15.6, 36.7, 38.8, 4, 3.8, 12.3, 13.4, 27.7, 22.5, 113.7, 27.3, 13.5, 28.1, 24, 22.2, 28.6, 31.9, 16.2, 7.6, 13.6, 34.7, 58.5, 60.3, 24.2, 182.8, 444.1, 176, 175.5, 159.5, 100.8, 164.7, 343.5, 433.7, 688, 385.4, 81.9, 174.8, 387.7, 3079.5, 2314, 84, 17.5, 7.4, 3.9, 1.6, 0.1, 0.3, 0.7, 1.1, -0.9, -1.1, 40.9, 13.4, 4.4, 9.8, 10.9, 8.5, 7.2, 7.7, 10.9, 9.5, 10.8, 10.9, 23.9, 0, 36.2, 24.8]; //Todos los datos desde 1945 hasta el 2017 tomados de https://es.wikipedia.org/wiki/Anexo:Evolución_del_Índice_de_Precios_al_Consumidor_en_Argentina
 
 //********************************************************
+//Interacción con la página
+
+function iniciarEnBrowser(){
+
+}
+
+//********************************************************
 //Calculadora
 function calculo(valor, t){
-	valor += precio * datos[t]
+	valor += precio * datos[t];
 	return(valor)
 }
 
@@ -14,9 +21,10 @@ function calculadora(valor, anoIn, anoFin){
 	var hasta = anoFin - 1945;
 	if(desde < hasta){
 		for(var t = desde; t <= hasta; t++){
-			valor = calculo(valor, t)
+			valor = calculo(valor, t);
 		}
 	} else {
-		alert("Fijate qe las fechas estén en el orden correcto (el año inicial es menor qe el año final)")
+		alert("Fijate qe las fechas estén en el orden correcto (el año inicial es menor qe el año final)");
 	}
+	alert(valor);
 }
