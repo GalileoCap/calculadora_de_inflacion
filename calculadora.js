@@ -9,7 +9,7 @@ var uiBtn
 function iniciarEnBrowser(){
 	uiBtn = document.getElementById("button");
 	uiBtn.onclick = function(){
-		alert("Test")
+		calculadora(valor, anoIn, anoFin);
 	}
 }
 
