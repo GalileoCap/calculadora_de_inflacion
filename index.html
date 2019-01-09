@@ -2,22 +2,28 @@
 	<title>Calc Inflacion</title>
 	<body>
 		<from>
-			Valor a convertir (en pesos, solo el numero) : <input name="valor" type="text">
+			Valor a convertir (en pesos, solo el numero) : <input id="valor" type="text">	
 			<br><br>
-			Año inicial : <select name="anoIn">
+			
+			Año inicial: <select id="inicial">
 				<option value="1945">1993</option>
 				<option value="1946">1994</option>
-			</select>
+			</select>		
 			<br><br>
-			Año final : <select name="anoFin">
+			
+			Año final: <select id="final">
 				<option value="2016">2016</option>
 				<option value="2017">2017</option>
-			</select>
+			</select>		
 			<br><br>
-			<input type="submit" id="button">
+			
+			<input type="submit" id="button" value="Calcular">
 		</from>
+		
 		<p><a href="https://galileocap.github.io/"> Otros proyectos mios </a></p>
+
 		<script src="calculadora.js"></script>
 		<script> iniciarEnBrowser() </script>
+
 	</body>
 </html>

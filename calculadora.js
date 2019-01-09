@@ -4,12 +4,14 @@ var datos = [19.9, 17.6, 13.6, 13.1, 31, 15.6, 36.7, 38.8, 4, 3.8, 12.3, 13.4, 2
 
 //********************************************************
 //S: Interacción con la página
-var uiBtn
-
 function iniciarEnBrowser(){
-	uiBtn = document.getElementById("button");
+	var uiBtn = document.getElementById("button");
 	uiBtn.onclick = function(){
-		calculadora(valor, anoIn, anoFin);
+		var valor = document.getElementById("valor");
+		var inicial = document.getElementById("inicial");
+		var final = document.getElementById("final");
+
+		calculadora(valor, inicial, final);
 	}
 }
 
