@@ -17,20 +17,17 @@ function iniciarEnBrowser(){
 
 //********************************************************
 //S: Calculadora
-function calculo(precio, t){
-	precio += precio * datos[t];
-	return(precio)
-}
-
-function calculadora(precio, anoIn, anoFin){
+function calculadora(precioOrig, anoIn, anoFin){
 	var desde = anoIn - 1944;
 	var hasta = anoFin - 1945;
+	var precioNuevo = precioOrig;
+	
 	if(desde < hasta){
 		for(var t = desde; t <= hasta; t++){
-			precio = calculo(precio, t);
+			precioNuevo += precioNuevo * datos[t];
 		}
 	} else {
 		alert("Fijate qe las fechas estén en el orden correcto (el año inicial es menor o igual qe el año final)");
 	}
-	console.log(precio);
+	alert(["Lo qe en", anoIn, "valía", precioOrig, ", en", anoFin, "vale", precioNuevo]);
 }
