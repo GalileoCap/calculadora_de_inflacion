@@ -11,10 +11,13 @@ function tomarDatos() {
     return fetch("https://cors-anywhere.herokuapp.com/http://www.bcra.gob.ar/Pdfs/PublicacionesEstadisticas/tas5_ser.txt")
         .then( res => { return res.text()})
         .then( t => {
-            (t.split(/[\r\n]+/).map( l => { var c= l.split(";"); datos[c[1]]= parseFloat(c[2]); })) 
+            (t.split(/[\r\n]+/).map( l => { var c= l.split(";"); datos[fechaAAnio(c[1])]= parseFloat(c[2]); })) 
             return datos;   
-        })
-        .then( datos = moment(datos));
+        });
+}
+
+function fechaAAnio(d){
+    return(moment(d, "DD-MM-YYYY").year())
 }
 
 //********************************************************
