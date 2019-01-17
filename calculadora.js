@@ -11,7 +11,7 @@ function tomarDatos() {
     return fetch("https://cors-anywhere.herokuapp.com/http://www.bcra.gob.ar/Pdfs/PublicacionesEstadisticas/tas5_ser.txt")
         .then( res => { return res.text()})
         .then( t => {
-            (t.split(/[\r\n]+/).map( l => { var c= l.split(";"); datos[fechaAAnio(c[1])]= parseFloat(c[2]); })) 
+            (t.split(/[\r\n]+/).map( l => { var c= l.split(";"); datos[c[1]]= parseFloat(c[2]); })) 
             return datos;   
         });
 }
@@ -37,12 +37,13 @@ function iniciarEnBrowser(){
 //********************************************************
 //S: Calculadora
 function calculadora(precioOrig, anoIn, anoFin){
-	var desde = moment(anoIn, "YYYY")["_i"];
-	var hasta = moment(anoFin, "YYYY")["_i"];
+	var desde = moment(anoIn).format("YYYY");
+	var hasta = moment(anoFin).format("YYYY");
 	var precioNuevo = precioOrig;
-	
+	console.log("CALCULO:", precioNuevo, "DESDE:", desde, "HASTA:", hasta);
 	if(desde < hasta){
-        precioNuevo = precioOrig*datos[hasta]/datos[desde]
+        precioNuevo = precioOrig*datos[hasta]/datos[desde];
+        console.log("PRECIO NUEVO:", precio, "DESDE2", datos[desde], "HASTA2:", datos[hasta]);
 	} else {
 		alert("Fijate qe las fechas estén en el orden correcto (el año inicial es menor o igual qe el año final)");
 	}
