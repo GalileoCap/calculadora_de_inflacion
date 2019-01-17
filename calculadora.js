@@ -37,15 +37,17 @@ function iniciarEnBrowser(){
 //********************************************************
 //S: Calculadora
 function calculadora(precioOrig, anoIn, anoFin){
-	var desde = moment(anoIn).format("YYYY");
-	var hasta = moment(anoFin).format("YYYY");
+	var desde = moment(anoIn).format("DD/MM/YYYY");
+	var hasta = moment(anoFin).format("DD/MM/YYYY");
 	var precioNuevo = precioOrig;
-	console.log("CALCULO:", precioNuevo, "DESDE:", desde, "HASTA:", hasta);
+	//console.log("CALCULO:", precioNuevo, "DESDE:", desde, "HASTA:", hasta);
+    
 	if(desde < hasta){
         precioNuevo = precioOrig*datos[hasta]/datos[desde];
-        console.log("PRECIO NUEVO:", precio, "DESDE2", datos[desde], "HASTA2:", datos[hasta]);
+        //console.log("PRECIO FINAL:", precioNuevo, "DESDE2", datos[desde], "HASTA2:", datos[hasta]);
+        
+        alert(["Lo qe en", anoIn, "valía", precioOrig, ", en", anoFin, "vale", precioNuevo])
 	} else {
-		alert("Fijate qe las fechas estén en el orden correcto (el año inicial es menor o igual qe el año final)");
-	}
-	alert(["Lo qe en", anoIn, "valía", precioOrig, ", en", anoFin, "vale", precioNuevo]);
+		alert("Fijate qe las fechas estén en el orden correcto (el año inicial tiene qe ser menor qe el año final)");
+	};
 }
