@@ -12,7 +12,9 @@ function tomarDatos() {
             return datos;   
         });
 }
-
+//XXX: Cuando pruebo con:
+//var count= Object.keys(datos).length;
+//me entero qe datos tiene 10188 elementos, cuando revisando en la lista del test.txt (haciendo "la cantidad de filas en total - desde cual me importan los datos") me entero qe tendría qe tener 33181
 //********************************************************
 //S: Interacción con la página
 function iniciarEnBrowser(){
