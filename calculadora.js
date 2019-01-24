@@ -1,3 +1,16 @@
+//*************
+//S: Utilidades
+
+function getParametro_url(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+	}
+
 //********************************************************
 //S: "BASE DE DATOS"
 CfgClaveCer = 3540;
@@ -23,19 +36,46 @@ function tomarDatos() {
 
 //********************************************************
 //S: Interacción con la página
-function iniciarEnBrowser(){
-    tomarDatos();
+
+function uiCalcular(){
+    var precio = document.getElementById("valor").value;
+    var anoIn = document.getElementById("inicial").value;
+    var anoFin = document.getElementById("final").value;
+
+    console.log("uiCalcular0", precio, anoIn, anoFin);
+    calculadora(precio, anoIn, anoFin);
+}
+
+async function iniciarEnBrowser(){
+    await tomarDatos(); //A: Esperamos qe termine antes de segir
 	var uiBtn = document.getElementById("button");
+    var inicio = document.getElementById("inicial");
+    inicio.max= moment().format('YYYY-MM-DD');
     var final = document.getElementById("final");
     final.max = moment().format('YYYY-MM-DD');
     final.value = moment().format('YYYY-MM-DD');
-	uiBtn.onclick = function(){
-		var precio = document.getElementById("valor").value;
-		var anoIn = document.getElementById("inicial").value;
-		var anoFin = document.getElementById("final").value;
-
-		calculadora(precio, anoIn, anoFin);
-	}
+    var precio = document.getElementById("valor");
+    
+    var precio_el= getParametro_url("p");
+    var fechaInicial= getParametro_url("i");
+    var fechaFinal= getParametro_url("f");
+    
+    if(precio_el != null){
+        precio.value= precio_el;
+    }
+    
+    if(fechaInicial != null){
+        inicio.value= fechaInicial;
+    }
+    if(fechaFinal != null){
+        final.value= fechaFinal;
+    }
+    
+	uiBtn.onclick = uiCalcular;
+    
+    if(fechaInicial && fechaFinal){//A: Si ya tengo las dos fechas
+        uiCalcular();
+    }
 }
 
 //********************************************************
