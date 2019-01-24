@@ -29,7 +29,6 @@ function tomarDatos() {
                     datos[c[1]]= parseFloat(c[2]); 
                 }
             }))                                             
-            console.log("Largo de los datos (deberia ser 3181)", Object.keys(datos).length);
             return datos;   
         });
 }
