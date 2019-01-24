@@ -42,6 +42,7 @@ function calculadora(precioOrig, anoIn, anoFin){
 	if(desde < hasta){
         precioNuevo = precioOrig*datos[hasta]/datos[desde];
         //console.log("PRECIO FINAL:", precioNuevo, "DESDE2", datos[desde], "HASTA2:", datos[hasta]);
+        precioNuevo = parseFloat(precioNuevo).toFixed(2); //U: Redondea a dos decimales
         
         var respuesta = document.getElementById("respuesta");
 		respuesta.innerHTML = "Lo qe en " + desde + " costaba $<strong>" + precioOrig + "</strong>, en " + hasta + " cuesta: $<strong>" + precioNuevo + "</strong>";
