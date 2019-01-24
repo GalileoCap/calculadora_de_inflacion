@@ -51,6 +51,11 @@ function calculadora(precioOrig, anoIn, anoFin){
         //console.log("PRECIO FINAL:", precioNuevo, "DESDE2", datos[desde], "HASTA2:", datos[hasta]);
         precioNuevo = parseFloat(precioNuevo).toFixed(2); //U: Redondea a dos decimales
         
+        var cerAntes_el= document.getElementById("cerAntes");
+        var cerDespues_el= document.getElementById("cerDespues");
+        cerAntes_el.innerHTML= "<i> CER = " + datos[desde] + "</i>";
+        cerDespues_el.innerHTML= "<i> CER = " + datos[hasta] + "</i>";
+        
         var respuesta = document.getElementById("respuesta");
 		respuesta.innerHTML = "Lo qe en " + desde + " costaba $<strong>" + precioOrig + "</strong>, en " + hasta + " cuesta: $<strong>" + precioNuevo + "</strong>";
 	} else {
