@@ -1,5 +1,7 @@
 //********************************************************
 //S: "BASE DE DATOS"
+CfgClaveCer = 3540;
+
 datos = {}; //U: los que trajimos del BCRA
 
 function tomarDatos() {
@@ -8,7 +10,12 @@ function tomarDatos() {
     return fetch("https://cors-anywhere.herokuapp.com/http://www.bcra.gob.ar/Pdfs/PublicacionesEstadisticas/tas5_ser.txt")
         .then( res => { return res.text()})
         .then( t => {
-            (t.replace(/^[^]*?\r?\n3539;/, "3539;").split(/[\r\n]+/).map( l => { var c= l.split(";"); datos[c[1]]= parseFloat(c[2]); }))
+            (t.split(/[\r\n]+/).map( l => { 
+                var c= l.split(";");
+                if(c[0] == CfgClaveCer){
+                    datos[c[1]]= parseFloat(c[2]); 
+                }
+            }))                                             
             console.log("Largo de los datos (deberia ser 3181)", Object.keys(datos).length);
             return datos;   
         });
