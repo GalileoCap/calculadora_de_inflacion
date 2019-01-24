@@ -39,52 +39,51 @@ function tomarDatos() {
 
 function uiCalcular(){
     var precio = document.getElementById("valor").value;
-    var anoIn = document.getElementById("inicial").value;
-    var anoFin = document.getElementById("final").value;
+    var fechaIn = document.getElementById("inicio").value;
+    fechaIn = moment(fechaIn).format("DD/MM/YYYY");
+    var fechaFin = document.getElementById("final").value;
+    fechaFin = moment(fechaFin).format("DD/MM/YYYY");
 
-    console.log("uiCalcular0", precio, anoIn, anoFin);
-    calculadora(precio, anoIn, anoFin);
+    console.log("uiCalcular", precio, fechaIn, fechaFin);
+    calculadora(precio, fechaIn, fechaFin);
 }
 
 async function iniciarEnBrowser(){
     await tomarDatos(); //A: Esperamos qe termine antes de segir
 	var uiBtn = document.getElementById("button");
-    var inicio = document.getElementById("inicial");
-    inicio.max= moment().format('YYYY-MM-DD');
-    var final = document.getElementById("final");
+    var uiInicio = document.getElementById("inicio");
+    uiInicio.max= moment().format('YYYY-MM-DD');
+    var uiFin = document.getElementById("final");
     final.max = moment().format('YYYY-MM-DD');
     final.value = moment().format('YYYY-MM-DD');
-    var precio = document.getElementById("valor");
+    var uiPrecio = document.getElementById("valor");
     
-    var precio_el= getParametro_url("p");
-    var fechaInicial= getParametro_url("i");
-    var fechaFinal= getParametro_url("f");
+    var precioUrl= getParametro_url("p");
+    var fechaInUrl= getParametro_url("i");
+    var fechaFinUrl= getParametro_url("f");
     
-    if(precio_el != null){
-        precio.value= precio_el;
+    if(precioUrl != null){
+        uiPrecio.value= precioUrl;
     }
     
-    if(fechaInicial != null){
-        inicio.value= fechaInicial;
+    if(fechaInUrl != null){
+        uiInicio.value= fechaInUrl;
     }
-    if(fechaFinal != null){
-        final.value= fechaFinal;
+    if(fechaFinUrl != null){
+        uiFin.value= fechaFinUrl;
     }
     
 	uiBtn.onclick = uiCalcular;
     
-    if(fechaInicial && fechaFinal){//A: Si ya tengo las dos fechas
+    if(fechaInUrl && fechaFinUrl){//A: Si ya tengo las dos fechas
         uiCalcular();
     }
 }
 
 //********************************************************
 //S: Calculadora
-function calculadora(precioOrig, anoIn, anoFin){
-	var desde = moment(anoIn).format("DD/MM/YYYY");
-	var hasta = moment(anoFin).format("DD/MM/YYYY");
+function calculadora(precioOrig, desde, hasta){
 	var precioNuevo = precioOrig;
-	//console.log("CALCULO:", precioNuevo, "DESDE:", desde, "HASTA:", hasta);
     
 	if(desde < hasta){
         precioNuevo = precioOrig*datos[hasta]/datos[desde];
@@ -96,9 +95,9 @@ function calculadora(precioOrig, anoIn, anoFin){
         cerAntes_el.innerHTML= "<i> CER = " + datos[desde] + "</i>";
         cerDespues_el.innerHTML= "<i> CER = " + datos[hasta] + "</i>";
         
-        var respuesta = document.getElementById("respuesta");
-		respuesta.innerHTML = "Lo qe en " + desde + " costaba $<strong>" + precioOrig + "</strong>, en " + hasta + " cuesta: $<strong>" + precioNuevo + "</strong>";
+        var respuesta_el = document.getElementById("respuesta");
+		respuesta_el.innerHTML = "Lo qe en " + desde + " costaba $<strong>" + precioOrig + "</strong>, en " + hasta + " cuesta: $<strong>" + precioNuevo + "</strong>";
 	} else {
-		alert("Fijate qe las fechas estén en el orden correcto (el año inicial tiene qe ser menor qe el año final)");
+		alert("Fijate qe las fechas esten en el orden correcto (la fecha inicial tiene qe ser menor qe la fecha final)");
 	};
 }

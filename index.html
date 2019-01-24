@@ -5,17 +5,19 @@
     </head>
 	<body>
 		<from>
-			Valor a convertir (en pesos, solo el numero) : <input id="valor" type="text">	
+			Valor a convertir (en pesos, solo el numero) : <input id="valor" type="text" value="1000">	
 			<br><br>
 			
-			Año inicial: <input type="date" id="inicial" name="trip-start"
-                   value="1991-04-01"
-                   min="1991-04-01" max="2019-01-19">		
+			Fecha inicial: <input type="date" id="inicio" name="trip-start"
+                   value="2002-02-02"
+                   min="2002-02-02">
+            <span id="cerAntes"></span>
 			<br><br>
 			
-			Año final: <input type="date" id="final" name="trip-start"
+			Fecha final: <input type="date" id="final" name="trip-start"
                    value="2019-01-17"
-                   min="1994-04-01" max="2019-01-19">		
+                   min="2002-02-02">	
+            <span id="cerDespues"></span>
 			<br><br>
 			
 			<input type="submit" id="button" value="Calcular">
