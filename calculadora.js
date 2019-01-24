@@ -8,18 +8,20 @@ function tomarDatos() {
     return fetch("https://cors-anywhere.herokuapp.com/http://www.bcra.gob.ar/Pdfs/PublicacionesEstadisticas/tas5_ser.txt")
         .then( res => { return res.text()})
         .then( t => {
-            (t.split(/[\r\n]+/).map( l => { var c= l.split(";"); datos[c[1]]= parseFloat(c[2]); })) 
+            (t.replace(/^[^]*?\r?\n3539;/, "3539;").split(/[\r\n]+/).map( l => { var c= l.split(";"); datos[c[1]]= parseFloat(c[2]); }))
+            console.log("Largo de los datos (deberia ser 3181)", Object.keys(datos).length);
             return datos;   
         });
 }
-//XXX: Cuando pruebo con:
-//var count= Object.keys(datos).length;
-//me entero qe datos tiene 10188 elementos, cuando revisando en la lista del test.txt (haciendo "la cantidad de filas en total - desde cual me importan los datos") me entero qe tendría qe tener 33181
+
 //********************************************************
 //S: Interacción con la página
 function iniciarEnBrowser(){
     tomarDatos();
 	var uiBtn = document.getElementById("button");
+    var final = document.getElementById("final");
+    final.max = moment().format('YYYY-MM-DD');
+    final.value = moment().format('YYYY-MM-DD');
 	uiBtn.onclick = function(){
 		var precio = document.getElementById("valor").value;
 		var anoIn = document.getElementById("inicial").value;
